@@ -307,7 +307,9 @@ protected:
     mutable bool  _viewProjectionDirty = true;
     bool _viewProjectionUpdated = false; //Whether or not the viewprojection matrix was updated since the last frame.
     CameraFlag _cameraFlag = CameraFlag::DEFAULT; // camera flag
-    mutable Frustum _frustum;   // camera frustum
+#if CC_USE_CULLING
+    // mutable Frustum _frustum;   // camera frustum
+#endif
     mutable bool _frustumDirty = true;
     int8_t  _depth = -1;                 //camera depth, the depth of camera with CameraFlag::DEFAULT flag is 0 by default, a camera with larger depth is drawn on top of camera with smaller depth
 

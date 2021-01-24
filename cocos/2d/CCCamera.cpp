@@ -333,12 +333,16 @@ void Camera::unprojectGL(const Size& viewport, const Vec3* src, Vec3* dst) const
 
  bool Camera::isVisibleInFrustum(const AABB* aabb) const
  {
+#if CC_USE_CULLING
      if (_frustumDirty)
      {
          _frustum.initFrustum(this);
          _frustumDirty = false;
      }
      return !_frustum.isOutOfFrustum(*aabb);
+#else
+    return true;
+#endif
  }
 
 float Camera::getDepthInView(const Mat4& transform) const
